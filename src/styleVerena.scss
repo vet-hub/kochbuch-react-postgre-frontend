@@ -1,0 +1,116 @@
+:root {
+  --color-1: rgb(93, 156, 89);
+  --color-2: rgb(199, 232, 202);
+  --color-3: rgb(221, 247, 227);
+  --color-4: rgb(193, 196, 193);
+  --color-5: black;
+}
+
+* {
+  text-decoration: none;
+  list-style: none;
+}
+
+body {
+  background-color: var(--color-2);
+}
+header {
+  height: 30vh;
+  background-color: var(--color-2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-size: 3em;
+  }
+}
+
+.Category {
+  height: 25vh;
+  background-color: var(--color-2);
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  li {
+    box-sizing: content-box;
+    flex: 1;
+    border: 2px solid var(--color-5);
+    padding: 0px;
+    text-align: center;
+    margin: 3%;
+    border-color: var(--color-5);
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    color: var(--color-5);
+    padding: 5%;
+  }
+
+  a:hover {
+    background-color: var(--color-3);
+  }
+
+  a:focus {
+    background-color: var(--color-3);
+    border-color: var(--color-4);
+  }
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    background-color: var(--color-2);
+    padding: 2%;
+  }
+}
+
+.Recipes {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+
+  .cardRecipe {
+    padding: 5%;
+    background-color: var(--color-3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 500px;
+    border: 1px solid var(--color-5);
+  }
+
+  h3 {
+    padding: 3%;
+    font-size: 2.6em;
+  }
+  img {
+    height: 350px;
+    width: 350px;
+    object-fit: cover;
+  }
+
+  ul {
+    text-align: left;
+    margin-top: 20px;
+  }
+}
+
+footer {
+  height: 20vh;
+  background-color: var(--color-5);
+  color: var(--color-3);
+}

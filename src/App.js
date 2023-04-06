@@ -1,33 +1,29 @@
 import './App.css';
 import "./styleVerena.scss";
 import { useState, useEffect } from "react";
-import { Link, NavLink, Route, Routes, useParams } from "react-router-dom";
+import { NavLink, Route, Routes, useParams } from "react-router-dom";
 
 function App() {
 	return (
-	  <div className="App">
-		 <header>
+		<div className="App">
+			<header>
 			<h1>Koch Dir was!</h1>
-		 </header>
- 
-		 <NavCategory />
- 
+			</header>
 
-		 <Routes>
-        <Route path="/" element={<RecipesInCategory />} />
-        <Route path="/category/:cate_name" element={<RecipesInCategory />} />
-      </Routes>
+			<NavCategory />
 
-		 <br />
-		 <hr />
-		 <br />
- 
-		 {
-			//	<CategoryRecipe />
-			// <Recipes />
-		 }
-		 <footer>&copy; Copyright 2023</footer>
-	  </div>
+
+			<Routes>
+				<Route path="/" element={<RecipesInCategory />} />
+				<Route path="/category/:cate_name" element={<RecipesInCategory />} />
+			</Routes>
+
+			<br />
+			<hr />
+			<br />
+
+			<footer>&copy; Copyright 2023</footer>
+		</div>
 	);
  }
 
@@ -85,27 +81,31 @@ function NavCategory() {
 
 
 function RecipesInCategory() {
+
 	const { cate_name = "Top bewertet" } = useParams(); // "/category/:cate_name" | defaullt value 'Top bewertet'
+	// const { cate_name = 1 } = useParams(); // "/category/:cate_name" | defaullt value 1 for 'Top bewertet'
 	const [recipesInCat, setRecipesInCat] = useState([]);
  
 	console.log("cate_name: ", cate_name);
- 
-	const getData = async () => {
 
-	//   const entryItem = await client.getEntries({
-	// 	 content_type: "category",
-	// 	 "fields.cateName": cate_name,
-	//   });
- 
-	//  const recipesInCategory = entryItem.items[0].fields.cateRecipes; // recipes array in one category
-	//  console.log("TEST resipesInCategory: ", recipesInCategory);
- 
-	//  setRecipesInCat(recipesInCategory);
-	};
- 
+	/*  
+		const getData = async () => {
+
+		const entryItem = await client.getEntries({
+			content_type: "category",
+			"fields.cateName": cate_name,
+		});
+	
+		const recipesInCategory = entryItem.items[0].fields.cateRecipes; // recipes array in one category
+		console.log("TEST resipesInCategory: ", recipesInCategory);
+	
+		setRecipesInCat(recipesInCategory);
+		};
+	*/ 
+
 	useEffect(() => {
 
-		fetch('/categs/category/1')		// >>> categRouter.get('category/1', getCategs);
+		fetch(`/categs/category/${cate_name}`)		// >>> categRouter.get('category/:cate_name', getCategs);
 		.then((res) => res.json())  		// res.json() -function returns an Object
 		.then((dataObj) => {
 			console.log('dataObj2:', dataObj, ' | ', dataObj.data);	// {data: Array(4)} | Array(4)
@@ -115,14 +115,20 @@ function RecipesInCategory() {
 	}, [cate_name]);
  
 	return (
-	  <section>
-		 <h2>Hier unsere Vorschläge für {cate_name}-Rezepte:</h2>
-		 <div className="Recipes">
-
-		 </div>
-	  </section>
+		<section>
+			<h2>Hier unsere Vorschläge für {cate_name}-Rezepte:</h2>
+			<div className="Recipes">
+				{recipesInCat?.map((recipe, idx) => (
+					<div key={idx} className="cardRecipe">
+					<h3>{recipe.name}</h3>
+					<img src={recipe.image} alt="bild" />
+					<div>{recipe.ingredients}</div> 
+					</div>
+				))}
+			</div>
+		</section>
 	);
- }
+}
  
 
 

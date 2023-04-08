@@ -42,7 +42,8 @@ function NavCategory() {
 
 	/*  */
 
-	fetch('/categs')							// >>> categRouter.get('/', getCategs);
+	//fetch('/categs')							// >>> categRouter.get('/', getCategs);
+	fetch('https://kochbuch-react-postgre-backend.onrender.com/categs')		// >>> categRouter.get('/', getCategs);
 		.then((res) => res.json())  		// res.json() -function returns an Object
 		.then((dataObj) => {
 			console.log('dataObj:', dataObj, ' | ', dataObj.data);	// {data: Array(4)} | Array(4)
@@ -105,7 +106,8 @@ function RecipesInCategory() {
 
 	useEffect(() => {
 
-		fetch(`/categs/category/${cate_name}`)		// >>> categRouter.get('category/:cate_name', getCategs);
+		//fetch(`/categs/category/${cate_name}`)		// >>> categRouter.get('category/:cate_name', getCategs);
+		fetch(`https://kochbuch-react-postgre-backend.onrender.com/categs/category/${cate_name}`)		// >>> categRouter.get('category/:cate_name', getCategs);
 		.then((res) => res.json())  		// res.json() -function returns an Object
 		.then((dataObj) => {
 			console.log('dataObj2:', dataObj, ' | ', dataObj.data);	// {data: Array(4)} | Array(4)
